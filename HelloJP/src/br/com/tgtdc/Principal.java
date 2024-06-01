@@ -1,5 +1,8 @@
 package br.com.tgtdc;
 
+import br.com.tgtdc.model.Aluno;
+import br.com.tgtdc.model.Professor;
+
 public class Principal {
 
 	public static void main(String[] args) {
@@ -115,5 +118,17 @@ public class Principal {
 		carroJoao.setCambio("Automático");
 		carroJoao.andar();
 		System.out.println("Carro do João: " + carroJoao.toString());
+				
+		System.out.println("----------------------------------------------------");
+		System.out.println("Progamação Orientada a Objetos - Herança:");
+		
+		Aluno aluno1 = new Aluno("Thiago Castro", "11934458250", "thi@mail.com", "12345", 2024);
+		System.out.println("Aluno: " + aluno1.toString());
+		
+		Professor professor1 = new Professor("Marques Ferreira", "11958634256", "marques@mail.com", "Java", "Mestre", 1234);
+		System.out.println("Professor Um: " + professor1.toString());
+		
+		Professor professor2 = new Professor("Rafael Silva", "119845465736", "rafa@mail.com", "https://linkedin.com/in/prof2", "Banco de Dados", "Doutorado", 56478);
+		System.out.println("Professor Dois: " + professor2.toString());
 	}
 }
