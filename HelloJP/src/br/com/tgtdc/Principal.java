@@ -87,16 +87,33 @@ public class Principal {
 		System.out.println("----------------------------------------------------");
 		System.out.println("Progamação Orientada a Objetos:");
 		
-		Carro carroThiago = new Carro();
-		carroThiago.cor = "Preto";
-		carroThiago.marca = "Ford";
-		carroThiago.modelo = "Mustang Shelby GT500";
-		carroThiago.andar();
+//		Carro carroThiago = new Carro(); //Instanciando Classe 
+//		String corCarro = carroThiago.cor = "Preto";
+//		String marcaCarro = carroThiago.marca = "Ford";
+//		String modeloCarro = carroThiago.modelo = "Mustang Shelby GT500";
+//		carroThiago.andar();
 		
-		Carro carroMarques = new Carro();
-		carroMarques.cor = "Branca";
-		carroMarques.marca = "BYD";
-		carroMarques.modelo = "Delphin";
+//		Carro carroMarques = new Carro(); //Instanciando Classe 
+//		carroMarques.cor = "Branca";
+//		carroMarques.marca = "BYD";
+//		carroMarques.modelo = "Delphin";
+//		carroMarques.parar();
+		
+		Carro carroThiago = new Carro("Preto", "Ford", "Mustang Shelby GT500"); 
+		carroThiago.andar();
+
+		Carro carroMarques = new Carro("Branca", "BYD", "Delphin", "Automático"); 
 		carroMarques.parar();
+		
+		Carro carroZe = new Carro("Vermelho", "Porsche", "991 GT3", false); 
+		carroZe.parar();
+		
+		Carro carroJoao = new Carro();
+		carroJoao.setCor("Azul");
+		carroJoao.setMarca("BMW");
+		carroJoao.setModelo("320i");
+		carroJoao.setCambio("Automático");
+		carroJoao.andar();
+		System.out.println("Carro do João: " + carroJoao.toString());
 	}
 }
