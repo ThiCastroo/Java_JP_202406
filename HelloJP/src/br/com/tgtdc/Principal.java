@@ -1,6 +1,14 @@
 package br.com.tgtdc;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import br.com.tgtdc.exception.LimiteCreditoExcedidoException;
 import br.com.tgtdc.model.Aluno;
@@ -154,7 +162,6 @@ public class Principal {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println(" - Erro: " + e.getMessage());
 		}
-		
 		System.out.println("----------------------------------------------------");
 		
 		Funcao funcao = new Funcao();
@@ -164,12 +171,11 @@ public class Principal {
 			System.out.println(" - Erro: " + e.getMessage());
 			e.printStackTrace();
 		}
-
 		System.out.println("----------------------------------------------------");
 		
 		ContaBancaria contaBancaria = new ContaBancaria(500);
 		try {
-			int pix = 25000;
+			int pix = 1000;
 			System.out.println("Realizando pix....");
 			contaBancaria.fazerPix(pix);
 		} catch (LimiteCreditoExcedidoException e) {
@@ -177,6 +183,96 @@ public class Principal {
 			//e.printStackTrace();
 		}
 		
+		System.out.println("----------------------------------------------------");
+		System.out.println("Coleções - List: ");
+		
+		List<String> nomes = new ArrayList<String>();
+		nomes.add("Thiago Castro");
+		nomes.add("Marques Ferreira");
+		nomes.add("Lionel Messi");
+		nomes.add("Rafael Nadal");
+		for (String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		System.out.println("----------------------------------------------------");
+		nomes.add("Vinicius Junior");
+		for (String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		System.out.println("----------------------------------------------------");
+//		nomes.remove(1);
+//		for (String nome : nomes) {
+//			System.out.println("Nome: " + nome);
+//		}
+		Collections.sort(nomes);
+		for (String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		System.out.println("----------------------------------------------------");
+		
+		List<Carro> carros = new ArrayList<Carro>();
+		carros.add(carroZe);
+		carros.add(carroMarques);
+		carros.add(carroJoao);
+		carros.add(carroThiago);
+		
+		for (Carro c : carros) {
+			System.out.println("Carro: " + c);
+		}
+		System.out.println("----------------------------------------------------");
+		
+		nomes.add("Arthur Gomes");
+		nomes.add("André Pereira");
+		Collections.sort(nomes);
+		for (String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		System.out.println("----------------------------------------------------");
+		
+		List<String> nomesFiltrados = nomes.stream()
+				.filter(nome2 -> nome2.startsWith("A"))
+				.collect(Collectors.toList());
+		
+		for (String nome : nomesFiltrados) {
+			System.out.println("Nome Filtro: " + nome);
+		}
+		System.out.println("----------------------------------------------------");
+		System.out.println("Coleções - Set: ");
+		
+		Set<String> cores = new HashSet<>();
+		cores.add("Vermelho");
+		cores.add("Azul");
+		cores.add("Preto");
+		
+		for (String cor : cores) {
+			System.out.println(cor);
+		}
+		System.out.println("----------------------------------------------------");
+		System.out.println("Coleções - HashMap: ");
+		
+		Map<String, String> paises = new HashMap<String, String>();
+		paises.put("Brasil", "Brasília");
+		paises.put("Portugal", "Lisboa");
+		paises.put("Estados Unidos", "Washington");
+		paises.put("Inglaterra", "Londres");
+		paises.put("Japão", "Tóquio");
+		
+		for(Map.Entry<String, String> entrada : paises.entrySet() ) {
+			System.out.println("País: " + entrada.getKey() + " - " + "Cidade: " + entrada.getValue());
+		}
+		paises.put("Espanha", "Madrid");
+		System.out.println("----------------------------------------------------");
+		System.out.println("Capital da Inglaterra: " + paises.get("Inglaterra"));	
+		System.out.println("----------------------------------------------------");
+		
+		Map<Integer, Carro> estacionamento = new HashMap<Integer, Carro>();
+		estacionamento.put(0, carroJoao);
+		estacionamento.put(1, carroMarques);
+		estacionamento.put(2, carroZe);
+		estacionamento.put(3, carroThiago);
+		
+		//System.out.println("Carro do Thiago: " + carroThiago.toString());
+		System.out.println("Carro do Thiago: " + estacionamento.get(3));
 		System.out.println("----------------------------------------------------");
 	}
 }
