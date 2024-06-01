@@ -1,6 +1,10 @@
 package br.com.tgtdc;
 
+import java.io.FileNotFoundException;
+
+import br.com.tgtdc.exception.LimiteCreditoExcedidoException;
 import br.com.tgtdc.model.Aluno;
+import br.com.tgtdc.model.ContaBancaria;
 import br.com.tgtdc.model.Professor;
 
 public class Principal {
@@ -130,5 +134,49 @@ public class Principal {
 		
 		Professor professor2 = new Professor("Rafael Silva", "119845465736", "rafa@mail.com", "https://linkedin.com/in/prof2", "Banco de Dados", "Doutorado", 56478);
 		System.out.println("Professor Dois: " + professor2.toString());
+		
+		System.out.println("----------------------------------------------------");
+		System.out.println("Tratamento de erros: ");
+		
+		try {
+			System.out.println("Vou fazer a conta....");
+			int valor = 10 / 1; 
+			System.out.println("A conta foi feita!");
+			System.out.println("Resultado da conta: " + valor);
+
+			int[] numeros = {0,1,2};
+			for (int y = 0; y < 3; y++) {
+				System.out.println(numeros[y]);
+			}
+			
+		} catch (ArithmeticException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+		}
+		
+		System.out.println("----------------------------------------------------");
+		
+		Funcao funcao = new Funcao();
+		try {
+			funcao.lerArquivo("Principal.class");
+		} catch (FileNotFoundException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		System.out.println("----------------------------------------------------");
+		
+		ContaBancaria contaBancaria = new ContaBancaria(500);
+		try {
+			int pix = 25000;
+			System.out.println("Realizando pix....");
+			contaBancaria.fazerPix(pix);
+		} catch (LimiteCreditoExcedidoException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+			//e.printStackTrace();
+		}
+		
+		System.out.println("----------------------------------------------------");
 	}
 }
