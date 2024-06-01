@@ -5,7 +5,7 @@ public class Principal {
 	public static void main(String[] args) {
 		
 		System.out.println("Hello!!");
-		System.out.println("--------------------------");
+		System.out.println("----------------------------------------------------");
 		
 		// Validação de operadores lógicos 
 		System.out.println("Operadores Lógicos: ");
@@ -84,5 +84,19 @@ public class Principal {
 			i++;
 		} 
 		
+		System.out.println("----------------------------------------------------");
+		System.out.println("Progamação Orientada a Objetos:");
+		
+		Carro carroThiago = new Carro();
+		carroThiago.cor = "Preto";
+		carroThiago.marca = "Ford";
+		carroThiago.modelo = "Mustang Shelby GT500";
+		carroThiago.andar();
+		
+		Carro carroMarques = new Carro();
+		carroMarques.cor = "Branca";
+		carroMarques.marca = "BYD";
+		carroMarques.modelo = "Delphin";
+		carroMarques.parar();
 	}
 }
