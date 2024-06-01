@@ -51,9 +51,38 @@ public class Principal {
 		}
 		
 		//Trabalhando com looppings: 
-		for (int numero = 0; numero < 11; numero++) {
-			System.out.println(numero);
+		System.out.println("* Contagem de 0 até 20:");
+		int max = 21;
+		for (int numero = 0; numero < max; numero++) {
+			//System.out.print(numero);
+			
+			//Se o número for par exibe um "*" entre o número, caso não, exibe só o número 
+			if (numero % 2 == 0) { 
+				System.out.print("*" + numero + "*");
+			} else {
+				System.out.print(numero);
+			}
+			
+			if (numero < (max - 1)) {
+				System.out.print(", ");
+			}
 		}
+		
+		int i = 0; 
+		while (i <= 10) {
+			System.out.print("\n"  + "Escrevendo i: " + i);
+			
+			switch(i) {
+				case 1:
+					System.out.println(" Achei o 1!!");
+					break;
+				default: 
+					System.out.println(" -----------");
+					break;
+			}
+			
+			i++;
+		} 
 		
 	}
 }
