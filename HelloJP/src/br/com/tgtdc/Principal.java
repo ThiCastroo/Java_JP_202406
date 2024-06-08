@@ -1,6 +1,6 @@
 package br.com.tgtdc;
 
-import java.io.FileNotFoundException;
+import java.io.FileNotFoundException; 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,7 +13,9 @@ import java.util.stream.Collectors;
 import br.com.tgtdc.exception.LimiteCreditoExcedidoException;
 import br.com.tgtdc.model.Aluno;
 import br.com.tgtdc.model.ContaBancaria;
+import br.com.tgtdc.model.Disciplina;
 import br.com.tgtdc.model.Professor;
+import br.com.tgtdc.model.Pessoa;
 
 public class Principal {
 
@@ -142,6 +144,15 @@ public class Principal {
 		
 		Professor professor2 = new Professor("Rafael Silva", "119845465736", "rafa@mail.com", "https://linkedin.com/in/prof2", "Banco de Dados", "Doutorado", 56478);
 		System.out.println("Professor Dois: " + professor2.toString());
+		
+		System.out.println("----------------------------------------------------");
+		System.out.println("Progamação Orientada a Objetos - Herança/Polimorfismo:");
+		
+		Pessoa pessoa1 = new Aluno("João Mario", "joao@mail.com", "11983743885", "777", 2024); //Criando uma Pessoa implementando Aluno
+		Pessoa pessoa2 = new Professor("Professor 1", "professor@mail.com", "11928148428", "Java", "Mestre", 2); //Criando uma Pessoa implementando Professor
+		
+		System.out.println("Pessoa 1: " + pessoa1.toString());
+		System.out.println("Pessoa 2: " + pessoa2.toString());
 		
 		System.out.println("----------------------------------------------------");
 		System.out.println("Tratamento de erros: ");
@@ -274,5 +285,16 @@ public class Principal {
 		//System.out.println("Carro do Thiago: " + carroThiago.toString());
 		System.out.println("Carro do Thiago: " + estacionamento.get(3));
 		System.out.println("----------------------------------------------------");
+		System.out.println("Setter Builder: ");
+		
+		Disciplina disciplina1 = Disciplina.builder()
+				.setNome("Banco de dados")
+				.setPeriodo("Terceiro Periodo")
+				.setCargaHoraria(300)
+				.build();
+		
+		System.out.println("Disciplina: " + disciplina1);
+		System.out.println("----------------------------------------------------");
+		
 	}
 }
