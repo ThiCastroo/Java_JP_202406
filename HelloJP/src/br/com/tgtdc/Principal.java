@@ -284,6 +284,7 @@ public class Principal {
 		
 		//System.out.println("Carro do Thiago: " + carroThiago.toString());
 		System.out.println("Carro do Thiago: " + estacionamento.get(3));
+		
 		System.out.println("----------------------------------------------------");
 		System.out.println("Setter Builder: ");
 		
