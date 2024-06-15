@@ -7,15 +7,17 @@
 </head>
  
 <body>
+
 	<h1>Calculadora Spring</h1>
-	<form action="#" th:action="@{/}" method="post" id="operacaoForm">
 	
+	<form action="#" th:action="@{/}" method="post" id="operacaoForm">
 		<label for="modelOperacoes">Selecione uma opção:</label>
 		<select id="modelOperacoes" name="modelOperacoes">
-			<option value="Soma">Soma</option>
-			<option value="Subtracao">Subtração</option>
-			<option value="Divisao">Divisão</option>
-			<option value="Multiplicacao">Multiplicação</option>
+			<option th:each="operacao: ${modelOperacoes}"
+					th:valeu="${operacao}"
+					th:text="${operacao}"
+					th:selected="${operacao == selectedModel}">
+			</option>
 		</select>
 		
 		<label for="valor01">Valor 01:</label>
@@ -25,7 +27,13 @@
 		<input id="valor02" name="valor02" type="text" />
 		
 		<button type="submit" id="submitBtn">Calcular</button>
-		
 	</form>
+	
+	<div>
+		<h4>Resposta:</h4>
+		<span>Resp aqui</span>
+		<button type="button" id="clearBtn">Limpar resposta</button>
+	</div>
+	
 </body>
 </html>
