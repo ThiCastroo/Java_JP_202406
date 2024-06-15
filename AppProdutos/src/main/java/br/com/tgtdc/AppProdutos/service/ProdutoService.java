@@ -25,8 +25,12 @@ public class ProdutoService {
 			System.out.println("Código de barras do produto vazio!");
 			return null;
 		}
-		
-		return produtoRepository.save(produto);
+		try {
+			return produtoRepository.save(produto);
+		} catch(Exception e) {
+			System.out.println("ERR: Erro ao inserir o produto " + produto.toString() + ": " + e.getMessage());
+			return null; 
+		}
 	}
 	
 	public List<Produto> findAll() {
@@ -38,6 +42,16 @@ public class ProdutoService {
 	}
 	
 	public Produto update(Produto produto) {
+		Optional<Produto> findProduto = produtoRepository.findById(produto.getId());
+		
+		if (findProduto.isPresent()) {
+			Produto updateProduto = findProduto.get();
+			updateProduto.setCodigoBarras(produto.getCodigoBarras());
+			updateProduto.setNome(produto.getNome());
+			updateProduto.setPreco(produto.getPreco());
+			return produtoRepository.save(updateProduto);
+		} 
+		
 		return produtoRepository.save(produto);	
 	}
 	
