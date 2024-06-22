@@ -100,10 +100,17 @@ public class ProdutoService {
 		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidade();
 		List<ProdutoSimplesDTO> listProdutoSimplesDTOs = new ArrayList<ProdutoSimplesDTO>();
 		
+		/*
 		for (Object[] obj : listResult) {
 			ProdutoSimplesDTO pSimplesDTO = returnBDProdutoSimplesDTO(obj);
 			listProdutoSimplesDTOs.add(pSimplesDTO);
 		}
+		*/
+		
+		//Usando a lógica acima, utilizamos o conceito de lambda e stream: 
+		listResult.forEach(pSimplesDTO -> {
+			listProdutoSimplesDTOs.add(returnBDProdutoSimplesDTO(pSimplesDTO));
+		});
 		
 		return listProdutoSimplesDTOs;
 	}
