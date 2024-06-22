@@ -91,7 +91,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(produtoDtos);
 	}
 	
-	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em estoque filtrado por quantidade menor que o parâmetro")
+	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em Estoque filtrado por quantidade menor que o parâmetro")
 	@GetMapping("/produto-and-quantidade/{qte}") 
 	public ResponseEntity<List<ProdutoDTO>> findProdutoAndQuantidadeMenor(@PathVariable Integer qte){
 		List<ProdutoDTO> produtoDtos = produtoService.findProdutoAndQuantidadeMenor(qte);
@@ -104,7 +104,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(produtoDtos);
 	}
 	
-	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em estoque com o preço de varejo")
+	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em Estoque com o preço de varejo")
 	@GetMapping("/produto-and-quantidade-varejo")  
 	public ResponseEntity<List<ProdutoSimplesDTO>> findProdutoAndQuantidadeVarejo(){
 		List<ProdutoSimplesDTO> produtoDtos = produtoService.findProdutosPrecoVarejo();
