@@ -29,7 +29,7 @@ public class OpenApiConfig {
 										.email("thiagogyorgy.castro@gmail.com")
 										.url("http://github.com/ThiCastroo")
 										)
-							.version("Versão 0.0.1-SNAPSHOT")
+							.version("0.0.1-SNAPSHOT")
 						);
 	}
 	

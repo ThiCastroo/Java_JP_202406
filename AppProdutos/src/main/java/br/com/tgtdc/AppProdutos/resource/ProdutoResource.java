@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tgtdc.AppProdutos.model.Produto;
 import br.com.tgtdc.AppProdutos.service.ProdutoService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -25,6 +26,7 @@ public class ProdutoResource {
 	@Autowired
 	private ProdutoService produtoService;
 	
+	@Operation(summary = "Busca todos os registros de Produtos")
 	@GetMapping
 	public ResponseEntity<List<Produto>> findAllProdutos() {
 		List<Produto> produtos = produtoService.findAll();
@@ -37,6 +39,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(produtos);
 	}
 	
+	@Operation(summary = "Busca registro por ID de Produto")
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Produto>> findById(@PathVariable Long id) {
 		Optional<Produto> produto = produtoService.findById(id);
@@ -46,6 +49,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(produto);
 	}
 	
+	@Operation(summary = "Grava o registro de Produto")
 	@PostMapping
 	public ResponseEntity<Produto> save(@RequestBody Produto produto) {
 		Produto newProduto = produtoService.save(produto);
@@ -55,6 +59,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(newProduto);
 	}
 	
+	@Operation(summary = "Atualiza o registro de Produto. Validação por ID")
 	@PutMapping
 	public ResponseEntity<Produto> update(@RequestBody Produto produto) {
 		Produto updateProduto = produtoService.update(produto);
@@ -64,6 +69,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(updateProduto);
 	}
 	
+	@Operation(summary = "Exclui o registro de Produto por ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		produtoService.delete(id);
