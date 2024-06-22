@@ -39,7 +39,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(produtos);
 	}
 	
-	@Operation(summary = "Busca registro por ID de Produto")
+	@Operation(summary = "Busca o registro de Produto por ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Produto>> findById(@PathVariable Long id) {
 		Optional<Produto> produto = produtoService.findById(id);

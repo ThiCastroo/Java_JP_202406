@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tgtdc.AppProdutos.model.Estoque;
 import br.com.tgtdc.AppProdutos.service.EstoqueService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/estoque")
@@ -25,6 +26,7 @@ public class EstoqueResource {
 	@Autowired
 	private EstoqueService estoqueService;
 	
+	@Operation(summary = "Grava o registro de Estoque")
 	@PostMapping
 	public ResponseEntity<Estoque> save(@RequestBody Estoque estoque) {
 		Estoque newEstoque = estoqueService.save(estoque);
@@ -34,6 +36,7 @@ public class EstoqueResource {
 		return ResponseEntity.ok(newEstoque);
 	}
 	
+	@Operation(summary = "Busca o registro de Estoque por ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Estoque>> findById(@PathVariable Long id) {
 		Optional<Estoque> findEstoque = estoqueService.findById(id);
@@ -43,6 +46,7 @@ public class EstoqueResource {
 		return ResponseEntity.ok(findEstoque);
 	}
 	
+	@Operation(summary = "Busca todos os registros de Estoques")
 	@GetMapping
 	public ResponseEntity<List<Estoque>> findAll() {
 		List<Estoque> estoques = estoqueService.findAll();
@@ -52,6 +56,7 @@ public class EstoqueResource {
 		return ResponseEntity.ok(estoques);
 	}
 	
+	@Operation(summary = "Atualiza o registro de Estoque. Validação por ID")
 	@PutMapping
 	public ResponseEntity<Estoque> update(@RequestBody Estoque estoque) {
 		Estoque updEstoque = estoqueService.update(estoque);
@@ -61,6 +66,7 @@ public class EstoqueResource {
 		return ResponseEntity.ok(updEstoque);
 	}
 	
+	@Operation(summary = "Exclui o registro de Estoque por ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		estoqueService.delete(id);
