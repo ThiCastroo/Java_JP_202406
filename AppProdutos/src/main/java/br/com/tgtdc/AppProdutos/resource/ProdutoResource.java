@@ -23,31 +23,7 @@ import br.com.tgtdc.AppProdutos.service.ProdutoService;
 public class ProdutoResource {
 
 	@Autowired
-	ProdutoService produtoService;
-	
-	@GetMapping("produto")
-	public ResponseEntity<Produto> getProduto() {
-		Produto produto = new Produto();
-		produto.setId(1L);
-		produto.setCodigoBarras("123MN213");
-		produto.setNome("Fone de ouvido");
-		produto.setPreco(35.0);
-		return ResponseEntity.ok(produto);
-	}
-	
-	@GetMapping("salvar")
-	public ResponseEntity<Produto> save2() {
-		Produto produto = new Produto();
-		produto.setCodigoBarras("123MN213");
-		produto.setNome("Fone de ouvido");
-		produto.setPreco(35.0);
-		
-		Produto produtoResposta = produtoService.save(produto);
-		if (produtoResposta == null) {
-			ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(produtoResposta);
-	}
+	private ProdutoService produtoService;
 	
 	@GetMapping
 	public ResponseEntity<List<Produto>> findAllProdutos() {
