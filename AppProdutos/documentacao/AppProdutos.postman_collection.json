@@ -458,6 +458,36 @@
 				}
 			],
 			"description": "Pesquisa uma lista contendo os dados do Produto e sua quantidade em EstoqueEndFragment"
+		},
+		{
+			"name": "JWT Token",
+			"item": [
+				{
+					"name": "Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/token?username=Thiago",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "Thiago"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

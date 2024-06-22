@@ -20,6 +20,7 @@ public class SecurityConfig {
 			.and()
 			.authorizeHttpRequests(
 					(authz) -> authz.requestMatchers(
+							"/token",
 							"/v3/api-docs/**",
 							"/swagger-ui/**",
 							"/swagger-ui.html",
