@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.tgtdc.AppProdutos.dto.ProdutoDTO;
+import br.com.tgtdc.AppProdutos.dto.ProdutoSimplesDTO;
 import br.com.tgtdc.AppProdutos.model.Produto;
 import br.com.tgtdc.AppProdutos.repository.ProdutoRepository;
 
@@ -61,32 +62,81 @@ public class ProdutoService {
 		produtoRepository.deleteById(id);
 	}
 	
-	public List<ProdutoDTO> findProdutoAndQuantidade() {
+	public List<ProdutoDTO> findProdutoAndQuantidade(){
 		
-		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidade(); 
+		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidade();
 		List<ProdutoDTO> listProdutoDTO = new ArrayList<ProdutoDTO>();
 		
 		for(Object[] obj : listResult) {
 			ProdutoDTO pDTO = returnBDProdutoDTO(obj);
+			listProdutoDTO.add(pDTO);
 		}
 		
-		return null;
-	} 
+		return listProdutoDTO;
+		
+	}
 	
 	/**
-	 * Conversão de objeto recebido do banco de dados para DTO de produtos 
+	 * Consulta em banco de dados, onde retorna o Produto com sua respectiva 
+	 * quantidade que seja <span>menor</span> que o parametro passado 
+	 * @param qtde quantidade a ser comparada 
+	 * @return lista de ProdutoDTO
+	 */
+	public List<ProdutoDTO> findProdutoAndQuantidadeMenor(Integer qtde) {
+		
+		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidadeMenor(qtde);
+		List<ProdutoDTO> listProdutoDTO = new ArrayList<ProdutoDTO>();
+		
+		for(Object[] obj : listResult) {
+			ProdutoDTO pDTO = returnBDProdutoDTO(obj);
+			listProdutoDTO.add(pDTO);
+		}
+		
+		return listProdutoDTO;
+	}
+	
+	public List<ProdutoSimplesDTO> findProdutosPrecoVarejo() {
+		
+		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidade();
+		List<ProdutoSimplesDTO> listProdutoSimplesDTOs = new ArrayList<ProdutoSimplesDTO>();
+		
+		for (Object[] obj : listResult) {
+			ProdutoSimplesDTO pSimplesDTO = returnBDProdutoSimplesDTO(obj);
+			listProdutoSimplesDTOs.add(pSimplesDTO);
+		}
+		
+		return listProdutoSimplesDTOs;
+	}
+	
+	/**
+	 * Conversão de objeto recebido do banco de dados para DTO de produtos
 	 * @param resultado objeto do BD
 	 * @return objeto ProdutoDTO
 	 */
 	private ProdutoDTO returnBDProdutoDTO(Object[] resultado) {
 		ProdutoDTO produtoDTO = new ProdutoDTO();
-		if (resultado != null) {
-			produtoDTO.setId(((Long)resultado[0]).longValue());
+		if(resultado != null) {
+			produtoDTO.setId(((Long)resultado[0]).longValue()   );
 			produtoDTO.setCodigoBarras((String)resultado[1]);
 			produtoDTO.setNome((String)resultado[2]);
-			produtoDTO.setPreco(((Double)resultado[0]).doubleValue());
-			produtoDTO.setQuantidade(((Integer)resultado[0]).intValue());
+			produtoDTO.setPreco(((Double)resultado[3]).doubleValue());
+			produtoDTO.setQuantidade(((Integer)resultado[4]).intValue());
 		}
 		return produtoDTO;
 	}
+	
+	private ProdutoSimplesDTO returnBDProdutoSimplesDTO(Object[] resultado) {
+		if (resultado != null) {
+			ProdutoSimplesDTO produtoSimplesDTO = new ProdutoSimplesDTO(
+					((Long)resultado[0]).longValue(), 
+					((String)resultado[1]), 
+					((Double)resultado[3]).doubleValue(),
+					(((Double)resultado[3]).doubleValue()*1.02), 
+					((Integer)resultado[4]).intValue());
+			return produtoSimplesDTO;
+		} else {
+			return null;
+		}
+	}
+	
 }

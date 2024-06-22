@@ -369,7 +369,7 @@
 			"name": "Produto e Quantidade",
 			"item": [
 				{
-					"name": "List Produto e Quantidade",
+					"name": "List Produto e Qtde",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -386,7 +386,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/produtos/produto/produto-and-quantidade",
+							"raw": "http://localhost:8080/api/produtos/produto-and-quantidade",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -395,8 +395,62 @@
 							"path": [
 								"api",
 								"produtos",
-								"produto",
 								"produto-and-quantidade"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Produto e Qtde Menor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/produto-and-quantidade/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"produto-and-quantidade",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Produto e Qtde Varejo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/produto-and-quantidade-varejo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"produto-and-quantidade-varejo"
 							]
 						}
 					},

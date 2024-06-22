@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tgtdc.AppProdutos.dto.ProdutoDTO;
+import br.com.tgtdc.AppProdutos.dto.ProdutoSimplesDTO;
 import br.com.tgtdc.AppProdutos.model.Produto;
 import br.com.tgtdc.AppProdutos.service.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -77,14 +78,40 @@ public class ProdutoResource {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@Operation(summary = "Pesquisa uma lista contendo os dados do Produto e sua quantidade em Estoque")
-	@GetMapping("/produto-and-quantidade")
-	public ResponseEntity<List<ProdutoDTO>> findProdutoAndQuantidade() {
+	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em Estoque")
+	@GetMapping("/produto-and-quantidade") 
+	public ResponseEntity<List<ProdutoDTO>> findProdutoAndQuantidade(){
 		List<ProdutoDTO> produtoDtos = produtoService.findProdutoAndQuantidade();
-		if (produtoDtos == null) {
+		if(produtoDtos == null) {
 			return ResponseEntity.notFound().build();
 		}
-		if (produtoDtos.size() == 0) {
+		if(produtoDtos.size() == 0) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(produtoDtos);
+	}
+	
+	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em estoque filtrado por quantidade menor que o parâmetro")
+	@GetMapping("/produto-and-quantidade/{qte}") 
+	public ResponseEntity<List<ProdutoDTO>> findProdutoAndQuantidadeMenor(@PathVariable Integer qte){
+		List<ProdutoDTO> produtoDtos = produtoService.findProdutoAndQuantidadeMenor(qte);
+		if(produtoDtos == null) {
+			return ResponseEntity.notFound().build();
+		}
+		if(produtoDtos.size() == 0) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(produtoDtos);
+	}
+	
+	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em estoque com o preço de varejo")
+	@GetMapping("/produto-and-quantidade-varejo")  
+	public ResponseEntity<List<ProdutoSimplesDTO>> findProdutoAndQuantidadeVarejo(){
+		List<ProdutoSimplesDTO> produtoDtos = produtoService.findProdutosPrecoVarejo();
+		if(produtoDtos == null) {
+			return ResponseEntity.notFound().build();
+		}
+		if(produtoDtos.size() == 0) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(produtoDtos);
