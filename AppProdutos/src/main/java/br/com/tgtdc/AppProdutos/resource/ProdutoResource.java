@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.tgtdc.AppProdutos.dto.ProdutoDTO;
 import br.com.tgtdc.AppProdutos.model.Produto;
 import br.com.tgtdc.AppProdutos.service.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -74,5 +75,18 @@ public class ProdutoResource {
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		produtoService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@Operation(summary = "Pesquisa uma lista contendo os dados do Produto e sua quantidade em Estoque")
+	@GetMapping("/produto-and-quantidade")
+	public ResponseEntity<List<ProdutoDTO>> findProdutoAndQuantidade() {
+		List<ProdutoDTO> produtoDtos = produtoService.findProdutoAndQuantidade();
+		if (produtoDtos == null) {
+			return ResponseEntity.notFound().build();
+		}
+		if (produtoDtos.size() == 0) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(produtoDtos);
 	}
 }

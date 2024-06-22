@@ -364,6 +364,46 @@
 				}
 			],
 			"description": "CRUD - Estoque"
+		},
+		{
+			"name": "Produto e Quantidade",
+			"item": [
+				{
+					"name": "List Produto e Quantidade",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/produto/produto-and-quantidade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"produto",
+								"produto-and-quantidade"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Pesquisa uma lista contendo os dados do Produto e sua quantidade em EstoqueEndFragment"
 		}
 	]
 }
